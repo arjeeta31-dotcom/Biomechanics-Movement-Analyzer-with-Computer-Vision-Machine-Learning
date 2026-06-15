@@ -2,7 +2,7 @@
 
 ## 1. Define The Problem
 
-Convert a biomechanics assignment into a CV/ML project that analyzes movement videos.
+A biomechanics project that analyzes movement videos.
 
 Example objective:
 
