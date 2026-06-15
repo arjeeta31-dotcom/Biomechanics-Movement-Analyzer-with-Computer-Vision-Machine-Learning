@@ -1,0 +1,13 @@
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+*.log
+outputs/
+models/*.joblib
+data/videos/
+data/raw/
+
