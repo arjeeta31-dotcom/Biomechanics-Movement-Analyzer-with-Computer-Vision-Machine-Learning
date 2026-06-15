@@ -66,15 +66,15 @@ An enterprise-grade Computer Vision and Machine Learning pipeline designed to au
 # Initialize Sandbox & Dependencies
 Provision a secure virtual runtime space to deploy the ecosystem configurations:
 
-- ** Create and trigger the virtual python sandbox**
+- **Create and trigger the virtual python sandbox**
   
 python -m venv .venv
 
-- ** Activate environment tracking (Windows Command Prompt) **
+- **Activate environment tracking (Windows Command Prompt)**
   
 .venv\Scripts\activate
 
-- ** Install performance dependency layers**
+- **Install performance dependency layers**
   
 pip install -r requirements.txt
 
@@ -96,7 +96,9 @@ data/videos/knee_valgus_01.mp4,knee_valgus
 
 data/videos/asymmetric_gait_01.mp4,asymmetric
 
+
 - **Execute the optimized training engine utility directly:**
+
 
  python scripts/train_model.py data/labels.csv
 
