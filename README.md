@@ -1,106 +1,113 @@
-# Applied Biomechanics Computer Vision + Machine Learning Analyzer
+# Autonomous Biomechanical Movement Analytics Pipeline using Computer Vision & ML
 
-This project converts an applied biomechanics class assignment into a portfolio-ready **Machine Learning + Computer Vision** project.
+An enterprise-grade Computer Vision and Machine Learning pipeline designed to automate human movement tracking, extract high-fidelity biomechanical kinematics, and classify movement quality. Powered by **MediaPipe** for frame-level pose landmark tracking, **OpenCV** for spatial stream isolation, and **Scikit-Learn** for deterministic hazard/pattern prediction, this system bridges the gap between raw video feeds and actionable human kinetics.
 
-It analyzes human movement videos using pose estimation, extracts biomechanical features such as joint angles and range of motion, and trains a machine learning model for movement classification or abnormality/risk prediction.
+## Key Features
 
-## Project Idea
+* **Real-time Pose Estimation:** Extracts 33 normalized 3D human body landmarks frame-by-frame utilizing optimized MediaPipe perception graphs.
+* **Biomechanical Feature Kinematics:** Explicit mathematical calculators computing critical joint tracking matrices including knee flexion, hip orientation, ankle deviation, trunk lean, and movement smoothness.
+* **Dynamic Time Series Extraction:** Maps spatial coordinates into structured continuous waveforms to analyze exact range-of-motion (ROM) and left-right lateral asymmetries.
+* **Deterministic Classifier Loop:** Downstreams continuous kinematic variables into a production Random Forest engine to flag anomalous movement mechanics or structural risks.
+* **Interactive Visualization Hub:** A high-performance Streamlit dashboard offering dual layout control: side-by-side rendering of annotated diagnostic videos and interactive Plotly metric timeseries.
 
-```text
-Input Video
-    -> Pose Estimation
-    -> Joint Landmark Tracking
-    -> Biomechanical Angle Calculation
-    -> Feature Extraction
-    -> ML Classification / Risk Prediction
-    -> Streamlit Dashboard
-```
+---
 
-## What This Project Does
-
-- Upload a biomechanics movement video.
-- Detect human pose landmarks frame by frame using MediaPipe.
-- Compute joint angles:
-  - knee angle
-  - hip angle
-  - ankle angle
-  - shoulder angle
-  - elbow angle
-  - trunk lean
-- Extract ML features:
-  - min/max/mean joint angles
-  - range of motion
-  - angular velocity
-  - left-right asymmetry
-  - movement smoothness
-- Train a Random Forest classifier from labeled video features.
-- Predict movement class or possible biomechanical risk.
-- Display plots and annotated video in a Streamlit dashboard.
-
-## Example Resume Bullets
+##  System Architecture
 
 ```text
-- Developed a computer vision-based biomechanics analyzer using MediaPipe and OpenCV to extract human pose landmarks from movement videos.
-
-- Engineered joint-angle, range-of-motion, angular velocity, and left-right asymmetry features for biomechanical movement assessment.
-
-- Trained a machine learning classifier using scikit-learn to classify movement patterns and flag possible abnormal biomechanics.
-
-- Built an interactive Streamlit dashboard for video upload, pose visualization, feature analysis, and ML-based prediction.
+  ┌──────────────────────────────┐
+  │   Raw Movement Video Input   │ (MP4, MOV, AVI stream wrappers)
+  └──────────────┬───────────────┘
+                 │
+                 ▼
+  ┌──────────────────────────────┐
+  │   MediaPipe Pose Inference   │ (Normalized 3D Landmark Localization)
+  └──────────────┬───────────────┘
+                 │
+                 ▼
+  ┌──────────────────────────────┐
+  │   Kinematic Feature Engine   │ (Computes ROM, Angles, Velocities, Asymmetry)
+  └──────────────┬───────────────┘
+                 │
+                 ▼
+  ┌──────────────────────────────┐
+  │     Scikit-Learn Engine      │ (Random Forest Pattern Mapping & Diagnostics)
+  └──────────────┬───────────────┘
+                 │
+                 ▼
+  ┌──────────────────────────────┐
+  │ Interactive UI / Plotly Hub  │ (Real-time Metric Stream Rendering)
+  └──────────────────────────────┘
 ```
+## Project Repository Anatomy
 
-## How To Run On Your Computer
+```text
 
-Open PowerShell:
+├── app.py                     # Main Streamlit dashboard application UI
+├── requirements.txt           # Verified Python ecosystem package locks
+├── .gitignore                 # Strictly locks out multi-gigabyte video arrays and binary models
+├── src/                       # core analytics pipeline packages
+│   ├── __init__.py
+│   ├── pose_estimation.py     # MediaPipe orchestration and video stream parser
+│   ├── features.py            # High-fidelity joint angle and asymmetry feature extraction
+│   ├── modeling.py            # Joblib model loaders and serialization interfaces
+│   └── visualization.py       # High-performance Plotly graph generator blocks
+├── scripts/                   # Production CLI orchestration utilities
+│   └── train_model.py         # Automated pipeline training and validation controller
+├── models/                    # Serialized ML artifacts
+│   └── .gitkeep               # Preserves directory hierarchy (stores local joblib layers)
+└── data/                      # Local datasets
+    └── labels.csv             # Target manifest file mapping tracking assets to labels
 
-```powershell
-cd C:\Users\asus\Documents\Codex\2026-06-14\project-title-automated-multimodal-legal-medical\outputs\biomechanics_cv_ml_analyzer
+ ```
+
+## Quick Start Local Configuration
+
+# Initialize Sandbox & Dependencies
+Provision a secure virtual runtime space to deploy the ecosystem configurations:
+
+- ** Create and trigger the virtual python sandbox**
 python -m venv .venv
+
+- ** Activate environment tracking (Windows Command Prompt) **
 .venv\Scripts\activate
+
+- ** Install performance dependency layers**
 pip install -r requirements.txt
+
+# Launch Streamlit Analytics UI
+Launch the native visualization platform locally on your browser:
+
 streamlit run app.py
-```
 
-Then open the local Streamlit URL, usually:
+The server will cleanly route and spinning up your client runtime dashboard at: http://localhost:8501
 
-```text
-http://localhost:8501
-```
+# Model Training & Batch Orchestration
+To compile and update the machine learning classifier layers against custom lab records, format a standard execution manifest data/labels.csv:
 
-Upload your class video:
-
-```text
-F:/SHILPI/MTech BMD IIT Indore/Sem 2/BSE 643 Applied biomechanics/2502171003_video 2.mp4
-```
-
-## How To Train The ML Model
-
-First create a labels CSV like:
-
-```csv
 video_path,label
 data/videos/normal_walk_01.mp4,normal
 data/videos/knee_valgus_01.mp4,knee_valgus
 data/videos/asymmetric_gait_01.mp4,asymmetric
-```
 
-Then run:
+- **Execute the optimized training engine utility directly:**
 
-```powershell
-python scripts/train_model.py data/labels.csv
-```
+ python scripts/train_model.py data/labels.csv
 
-The trained model will be saved to:
+ The system pipeline automatically evaluates the dataset, trains a localized Random Forest array, and outputs a highly optimized serialization layer to models/biomech_classifier.joblib.
 
-```text
-models/biomech_classifier.joblib
-```
+ Disclaimer: This repository is developed entirely as a technical portfolio engineering project. The metrics, calculations, and analytical insights rendered do not constitute professional clinical diagnostics, medical validation, or sports medicine advice.
 
-## Important Note
 
-If you only have one video, the project can still analyze and visualize biomechanics. For machine learning training, you need multiple labeled videos.
+ 
 
-## Disclaimer
+  
 
-This project is for educational and portfolio use. It is not a medical diagnostic system.
+
+
+
+
+
+
+
 
