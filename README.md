@@ -67,12 +67,15 @@ An enterprise-grade Computer Vision and Machine Learning pipeline designed to au
 Provision a secure virtual runtime space to deploy the ecosystem configurations:
 
 - ** Create and trigger the virtual python sandbox**
+  
 python -m venv .venv
 
 - ** Activate environment tracking (Windows Command Prompt) **
+  
 .venv\Scripts\activate
 
 - ** Install performance dependency layers**
+  
 pip install -r requirements.txt
 
 # Launch Streamlit Analytics UI
@@ -86,8 +89,11 @@ The server will cleanly route and spinning up your client runtime dashboard at: 
 To compile and update the machine learning classifier layers against custom lab records, format a standard execution manifest data/labels.csv:
 
 video_path,label
+
 data/videos/normal_walk_01.mp4,normal
+
 data/videos/knee_valgus_01.mp4,knee_valgus
+
 data/videos/asymmetric_gait_01.mp4,asymmetric
 
 - **Execute the optimized training engine utility directly:**
