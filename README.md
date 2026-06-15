@@ -1,4 +1,4 @@
-# Autonomous Biomechanical Movement Analytics Pipeline using Computer Vision & ML
+# Biomechanics Movement Analyzer with Computer Vision & Machine Learning 
 
 An enterprise-grade Computer Vision and Machine Learning pipeline designed to automate human movement tracking, extract high-fidelity biomechanical kinematics, and classify movement quality. Powered by **MediaPipe** for frame-level pose landmark tracking, **OpenCV** for spatial stream isolation, and **Scikit-Learn** for deterministic hazard/pattern prediction, this system bridges the gap between raw video feeds and actionable human kinetics.
 
