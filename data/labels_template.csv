@@ -1,0 +1,5 @@
+video_path,label
+data/videos/normal_walk_01.mp4,normal
+data/videos/knee_valgus_01.mp4,knee_valgus
+data/videos/asymmetric_gait_01.mp4,asymmetric
+
